@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Authentication
+<h2>Claims</h2>
+
+<dl>
+    @* // 遍历 用户身份信息 *@
+    @foreach (var claim in User.Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>
+
+<h2>Properties</h2>
+
+<dl>
+    @* // 遍历 认证属性 *@
+    @foreach (var prop in (await Context.AuthenticateAsync()).Properties.Items)
+    {
+        <dt>@prop.Key</dt>
+        <dd>@prop.Value</dd>
+    }
+</dl>
+
+<a asp-controller="Home" asp-action="Logout">Logout</a>
